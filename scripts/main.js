@@ -11,44 +11,29 @@
 
 
 function handValue (hand) {
-var cardValue;
-var value = 0;
-  for (var i = 0; i < hand[i].length; i++) {
-    cardValue = parseInt(hand);
+  var cardValue = 0;
+  var handValue = 0;
+  var aceValue = false;
 
-    //card Value if 2 through 9
-  if (cardValue >= 2 || cardValue <= 9) {
-      if (hand[i] === '2') {
-        value = 2;
-      }
-      else if (hand[i] === '3') {
-        value = 3;
-      }
-      else if (hand[i] === '4') {
-        value = 4;
-      }
-      else if (hand[i] === '5'){
-        value = 5;
-      }
-      else if (hand[i] === '6') {
-        value = 6;
-      }
-      else if (hand[i] === '7') {
-        value = 7;
-      }
-      else if (hand[i] === '8') {
-        value = 8;
-      }
-      else if (hand[i] === '9') {
-        value = 9;
-      }
+  for (let i = 0; i < hand.length; i++) {
+    if (hand[i] === 'K' || hand[i] === 'Q' || hand[i] === 'J') {
+        cardValue = 10;
+        handValue += cardValue;
     }
-  if (cardValue === 'J' || cardValue === 'Q' || cardValue === 'K') {
-    value = 10;
+    else if (hand[i] === 'A') {
+        cardValue = 1;
+        aceValue = true;
+        handValue += cardValue;
+    }
+    else
+    {
+        cardValue = parseInt(hand[i]);
+        handValue += cardValue;
+    }
   }
-  if (cardValue === 'A') {
-    value = 11;
-  }
-  }
-  return;
+    if (handValue <= 11 && aceValue) {
+        handValue += 10;
+    }
+    console.log(handValue);
+  return handValue;
 }
